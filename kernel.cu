@@ -601,7 +601,7 @@ cudaError_t cudaHistogram(unsigned int histLen, unsigned int*& h_histogramTokens
     for (int i = 0; i < histLen; i++)
         h_histogram[i] = 0;
 
-    // Alocate Host momory for histogram words
+    // Allocate Host memory for histogram words
     cudaStatus = cudaHostAlloc(&h_histogramTokens, histLen * sizeof(int), 0);
     if (cudaStatus != cudaSuccess)
     {
@@ -627,7 +627,7 @@ cudaError_t cudaHistogram(unsigned int histLen, unsigned int*& h_histogramTokens
         goto Error;
     }
 
-    // Alocate Mapped memory for keeping per-block histogram
+    // Allocate Mapped memory for keeping per-block histogram
     cudaStatus = cudaHostAlloc(&h_partialHists, HISTOGRAM_SIZE * MAX_BLOCKS_PER_KC * sizeof(int), cudaHostAllocMapped);
     if (cudaStatus != cudaSuccess)
     {
@@ -642,14 +642,14 @@ cudaError_t cudaHistogram(unsigned int histLen, unsigned int*& h_histogramTokens
         goto Error;
     }
 
-    // Allocate Device momory for keeping of histogram words
+    // Allocate Device memory for keeping of histogram words
     cudaStatus = cudaMalloc(&d_histogramTokens, HISTOGRAM_SIZE * sizeof(int));
     if (cudaStatus != cudaSuccess) {
         fprintf(stderr, "Failed to Allocate Device Memory (error code %s)!\n", cudaGetErrorString(cudaStatus));
         goto Error;
     }
 
-    // Allocate Device momory for keeping of intermediate tokens
+    // Allocate Device memory for keeping of intermediate tokens
     cudaStatus = cudaMalloc(&d_tokens, MAX_BLOCKS_PER_KC * BLOCK_INP_LEN * sizeof(int));
     if (cudaStatus != cudaSuccess) {
         fprintf(stderr, "Failed to Allocate Device Memory (error code %s)!\n", cudaGetErrorString(cudaStatus));
@@ -850,7 +850,7 @@ cudaError_t cudaHistogram1(unsigned int histLen, unsigned int*& h_histogramToken
     for (int i = 0; i < histLen; i++)
         h_histogram[i] = 0;
 
-    // Alocate Host momory for histogram words
+    // Allocate Host memory for histogram words
     cudaStatus = cudaHostAlloc(&h_histogramTokens, histLen * sizeof(int), 0);
     if (cudaStatus != cudaSuccess)
     {
@@ -875,7 +875,7 @@ cudaError_t cudaHistogram1(unsigned int histLen, unsigned int*& h_histogramToken
             goto Error;
         }
 
-        // Alocate Mapped memory for keeping per-block histogram
+        // Allocate Mapped memory for keeping per-block histogram
         cudaStatus = cudaHostAlloc(h_partialHists + i, HISTOGRAM_SIZE * MAX_BLOCKS_PER_KC * sizeof(int), cudaHostAllocMapped);
         if (cudaStatus != cudaSuccess)
         {
@@ -892,7 +892,7 @@ cudaError_t cudaHistogram1(unsigned int histLen, unsigned int*& h_histogramToken
 
     }
 
-    // Allocate Device momory for keeping of histogram words
+    // Allocate Device memory for keeping of histogram words
     cudaStatus = cudaMalloc(&d_histogramTokens, HISTOGRAM_SIZE * sizeof(int));
     if (cudaStatus != cudaSuccess) {
         fprintf(stderr, "Failed to Allocate Device Memory (error code %s)!\n", cudaGetErrorString(cudaStatus));
@@ -900,7 +900,7 @@ cudaError_t cudaHistogram1(unsigned int histLen, unsigned int*& h_histogramToken
     }
     
     
-    // Allocate Device momory for keeping of intermediate tokens
+    // Allocate Device memory for keeping of intermediate tokens
     for (int i = 0; i < 4; i++) {
         cudaStatus = cudaMalloc(d_tokens + i, MAX_BLOCKS_PER_KC * BLOCK_INP_LEN * sizeof(int));
         if (cudaStatus != cudaSuccess) {
